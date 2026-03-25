@@ -1,0 +1,588 @@
+#include <OLED_I2C.h>
+
+OLED  myOLED(SDA, SCL);
+extern uint8_t SmallFont[];
+
+const int etkibuton = D5;
+const int hareketbuton = D1;
+const int geributon = D9;
+
+bool etki = 0;
+bool hareket = 0;
+bool geri = 0;
+
+bool sonetki = 0;
+bool sonhareket = 0;
+bool songeri = 0;
+
+
+int konum4 = 1;
+int konum3 = 1;
+int konum2 = 1;
+int konum1 = 1;
+int i = 1;
+int sayfa = 1;
+
+int ledstate = 0;
+int onay = 0;
+
+void page11s1(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("NovaSpark Hakkinda", CENTER, 5);
+  myOLED.print("~Gelistiriciler~", CENTER, 18);
+  myOLED.print("-EFE EVREN-", LEFT, 31);
+  myOLED.print("-Melih Ensar Kucuk-", LEFT, 43);
+  myOLED.print("CK MTAL Otomasyon", CENTER, 55);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page10s2(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("> ~~~~~ <", CENTER, 5);
+  myOLED.print("Yangin tespiti ve", CENTER, 18);
+  myOLED.print("mudahalesi yapan", CENTER, 29);
+  myOLED.print("otonom sistem.", CENTER, 39);
+  myOLED.print("~NovaSpark Team~", CENTER, 55);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page10s1(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Sistem Hakkinda", CENTER, 5);
+  myOLED.print("SafeSense v1.0 Beta", CENTER, 18);
+  myOLED.print("Teknofest 2025", CENTER, 30);
+  myOLED.print("Afet Yonetimi", CENTER, 43);
+  myOLED.print("> ~~~~~ <", CENTER, 55);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+
+
+void page8s2(){
+ 
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("> ~~~~~ <", CENTER, 9);
+  myOLED.print("-Wifi-", CENTER, 19);
+  myOLED.print("ESP32-S2 2.4 GHz", LEFT, 31);
+  myOLED.print("802.11b/g/n", LEFT, 43);
+  myOLED.print("4MB SPI Flash", CENTER, 55);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page8s1(){
+ 
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Sistem Donanimi", CENTER, 5);
+  myOLED.print("-islem birimi-", CENTER, 18);
+  myOLED.print("Deneyap kart", LEFT, 30);
+  myOLED.print("Tensilica Xtensa LX7", LEFT, 42);
+  myOLED.print("> ~~~~~ <", CENTER, 55);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page7s2(){
+  
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("CPU Mode", CENTER, 5);
+  myOLED.print("-Select a mode-", CENTER, 16);
+  myOLED.print("  RUN MODE", LEFT, 35);
+  myOLED.print("> STOP MODE", LEFT, 52);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page7s1(){
+  
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("CPU Mode", CENTER, 5);
+  myOLED.print("-Select a mode-", CENTER, 16);
+  myOLED.print("> RUN MODE", LEFT, 35);
+  myOLED.print("  STOP MODE", LEFT, 52);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page5s1(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Database info", CENTER, 5);
+  myOLED.print("Powered by", CENTER, 18);
+  myOLED.print("Firebase", CENTER, 30);
+  myOLED.print("Copyright 2025", CENTER, 48);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+}
+
+void page4s1(){
+
+myOLED.clrScr(); // ekranı temizle
+myOLED.print("Wifi SSID/Sifre", CENTER, 5);
+myOLED.print("-SSID-", CENTER, 18);
+    // Wifi Adı Yazılacak 
+myOLED.print("-Sifre-", CENTER, 40);
+    // Wifi Şifresi Yazılacak
+myOLED.update();  //ekranı yenile
+delay(25);
+
+}
+
+void page3s2(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Wifi ON/OFF", CENTER, 5);
+  myOLED.print("  ON", CENTER, 20);
+  myOLED.print("> OFF", CENTER, 40);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page3s1(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Wifi ON/OFF", CENTER, 5);
+  myOLED.print("> ON", CENTER, 20);
+  myOLED.print("  OFF", CENTER, 40);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page9s2(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Hakkinda", CENTER, 5);
+  myOLED.print(" Sistem Hakkinda", CENTER, 20);
+  myOLED.print(">Gelistirici Hakkinda", CENTER, 35);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page9s1(){
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Hakkinda", CENTER, 5);
+  myOLED.print(">Sistem Hakkinda", CENTER, 20);
+  myOLED.print(" Gelistirici Hakkinda", CENTER, 35);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page6s1(){
+  
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Sistem Ayarlari", CENTER, 5);
+  myOLED.print("> CPU Mode", LEFT, 22);
+  myOLED.print("  Sistem Bilgisi", LEFT, 35);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+
+}
+
+void page6s2(){
+  
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Sistem Ayarlari", CENTER, 5);
+  myOLED.print("  CPU Mode", LEFT, 22);
+  myOLED.print("> Sistem Bilgisi", LEFT, 35);
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+
+}
+
+void page2s3(){    // MENÜ 2 satır 3
+
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Wifi Durumu", CENTER, 5); 
+  myOLED.print("  Wifi On/Off", LEFT, 18);
+  myOLED.print("  Wifi SSID/Sifre", LEFT, 32);
+  myOLED.print("> Database info", LEFT, 46);    
+  myOLED.update();  //ekranı yenile
+  delay(25);
+}
+
+void page2s2(){    // MENÜ 2 satır 2
+
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Wifi Durumu", CENTER, 5); 
+  myOLED.print("  Wifi On/Off", LEFT, 18);
+  myOLED.print("> Wifi SSID/Sifre", LEFT, 32);
+  myOLED.print("  Database info", LEFT, 46);    
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+
+void page2s1(){    // MENÜ 2 satır 1
+
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Wifi Durumu", CENTER, 5); 
+  myOLED.print("> Wifi On/Off", LEFT, 18);
+  myOLED.print("  Wifi SSID/Sifre", LEFT, 32);
+  myOLED.print("  Database info", LEFT, 46);    
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page1s3(){    // ANA MENÜ satır 3
+
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Ana Menu", CENTER, 5);
+  myOLED.print("  Wifi Durumu", LEFT, 20);  
+  myOLED.print("  Sistem Ayarlari", LEFT, 35);
+  myOLED.print("> Hakkinda", LEFT, 50);  
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page1s2(){  // ANA MENÜ  satır 2
+
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Ana Menu", CENTER, 5);
+  myOLED.print("  Wifi Durumu", LEFT, 20);  
+  myOLED.print("> Sistem Ayarlari", LEFT, 35);
+  myOLED.print("  Hakkinda", LEFT, 50);  
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void page1s1(){  // ANA MENÜ satır 1
+
+  myOLED.clrScr();  //ekranı temizle 
+  myOLED.print("Ana Menu", CENTER, 5);
+  myOLED.print("> Wifi Durumu", LEFT, 20);  
+  myOLED.print("  Sistem Ayarlari", LEFT, 35);
+  myOLED.print("  Hakkinda", LEFT, 50);  
+  myOLED.update();  //ekranı yenile
+  delay(25);
+
+}
+
+void gerifunc(){
+  sayfa = 1;
+  i = 1;
+ konum4 = 1;
+ konum3 = 1;
+ konum2 = 1;
+ konum1 = 1;
+}
+
+
+void setup() {
+
+  if(!myOLED.begin(SSD1306_128X64))
+  while(1);
+
+  myOLED.setFont(SmallFont);
+
+   Serial.begin(9600);
+
+
+
+} // void setup
+
+void loop() {
+
+/*
+Serial.print("  sayfa: ");
+Serial.println(sayfa);
+Serial.print("  i: ");
+Serial.println(i);
+Serial.print("  konum1: ");
+Serial.print(konum1);
+Serial.print("  konum2: ");
+Serial.print(konum2);
+Serial.print("  konum3: ");
+Serial.print(konum3);
+Serial.print("  konum4: ");
+Serial.print(konum4);
+*/
+
+  etki = digitalRead(etkibuton);
+  hareket = digitalRead(hareketbuton);
+  geri = digitalRead(geributon);
+
+
+
+  // Butona her basıp çekişte sayfayı bir arttır
+  if (hareket == LOW && sonhareket == HIGH) {  // Butona basıldığında
+    
+    delay(50);  // Debouncing için kısa bir gecikme
+    i++;    // satırı arttır
+  
+  } // if
+
+    // Butona her basıp çekişte sayfayı bir arttır
+  if (etki == LOW && sonetki == HIGH) {  // Butona basıldığında
+    
+    delay(50);  // Debouncing için kısa bir gecikme
+    sayfa++;    // Sayfayı arttır
+    i = 1;
+  
+  } // if
+
+    // Butona her basıp çekişte sayfayı bir arttır
+  if (geri == LOW && songeri == HIGH) {  // Butona basıldığında
+    
+    delay(50);  // Debouncing için kısa bir gecikme
+    gerifunc();   // geri fonksiyonu çağırılır
+  
+  } // if
+
+
+  sonetki = etki;  // Son buton durumunu güncelle
+  sonhareket = hareket;  // Son buton durumunu güncelle
+  songeri = geri;  // Son buton durumunu güncelle
+
+if(sayfa > 3){
+  sayfa = 3;
+}
+
+if(sayfa == 0){
+  sayfa = 1;
+}
+
+
+  if(sayfa == 1){     //  1. SAYFA KİLİDİ
+
+  if(i == 1){
+
+  page1s1(); //fonksiyonu çağır
+  konum1 = 1;
+  }
+
+  if(i == 2){
+
+  page1s2(); //fonksiyonu çağır
+  konum1 = 2;
+  }
+
+  if(i == 3){
+
+  page1s3(); //fonksiyonu çağır
+  konum1 = 3;  
+  }
+  
+
+  if(i > 3){
+
+    i = 1;
+  }
+
+   }   // SAYFA KİLİDİ
+
+
+if(konum1 == 1 && sayfa == 2){   // 2. SAYFA KİLİDİ
+
+  if(i == 1){
+  page2s1();
+  konum2 = 1;
+}
+
+
+if(i == 2){
+  page2s2();
+  konum2 = 2;
+}
+
+
+if(i == 3){
+  
+  page2s3();
+  konum2 = 3;
+}
+
+if(i >= 4){
+
+  i = 1;
+}
+
+
+}    // SAYFA KİLİDİ
+
+if(konum1 == 2 && sayfa == 2){   //  SAYFA KİLİDİ
+
+if(i == 1){
+
+page6s1();
+konum3 = 1;
+}
+
+if(i == 2){
+  
+page6s2();
+konum3 = 2;
+}
+
+if(i >= 3){
+
+i = 1;
+}
+
+}    // SAYFA KİLİDİ
+
+if(konum1 == 3 && sayfa == 2){   // 2. SAYFA KİLİDİ
+
+
+  if(i == 1){
+  page9s1();
+  
+}
+
+
+if(i == 2){
+  page9s2();
+
+}
+
+
+if(i >= 3){
+
+  i = 1;
+}
+
+
+}    // SAYFA KİLİDİ
+
+
+if(konum1 == 1 && konum2 == 1  && i == 1 && sayfa == 3){
+
+ page3s1();
+  
+}
+
+if(konum1 == 1 && konum2 == 1 && i == 2 && sayfa == 3){
+
+ page3s2();
+}
+
+if(sayfa == 3 && konum1 == 1 && konum2 == 1){
+
+  if(i > 2){
+
+    i = 1;
+  }
+
+}
+
+
+ if(konum1 == 1 && konum2 == 2 && i == 1 && sayfa == 3){
+
+  page4s1();
+ 
+ }
+
+
+ if(konum1 == 1 && konum2 == 3 && sayfa == 3){
+
+ if(i > 1){
+  i = 1;
+ }
+ 
+  page5s1(); 
+ 
+}
+
+if(konum1 == 2 && konum3 == 1 && sayfa == 3 && i == 1){
+
+  page7s1();
+}
+
+if(konum1 == 2 && konum3 == 1 && sayfa == 3 && i == 2){
+
+  page7s2();
+}
+
+
+if(konum1 == 2 && konum3 == 1 && sayfa == 3){
+
+if(i > 2){
+  i = 1;
+}
+
+}
+
+
+if(konum1 == 2 && konum3 == 2 && sayfa == 3 && i == 1){
+
+  page8s1();
+}
+
+if(konum1 == 2 && konum3 == 2 && sayfa == 3 && i == 2){
+
+  page8s2();
+}
+
+if(konum1 == 2 && konum3 == 2 && sayfa == 3){
+
+  if(i > 2){
+
+    i = 1;
+  }
+}
+
+
+if(konum1 == 3 && konum4 == 1 && sayfa == 3 && i == 1){
+
+  page10s1();
+}
+
+if(konum1 == 3 && konum4 == 1 && sayfa == 3 && i == 2){
+
+  page10s2();
+}
+
+if(konum1 == 3 && konum4 == 1 && sayfa == 3){
+
+  if(i > 2){
+
+    i = 1;
+  }
+}
+
+if(konum1 == 3 && konum4 == 2 && sayfa == 3 && i == 1){
+
+  page11s1();
+}
+
+if(konum1 == 3 && konum4 == 2 && sayfa == 3){
+
+  if(i > 1){
+
+    i = 1;
+  }
+}
+
+if(konum1 == 3 && sayfa == 2){
+
+  if(i == 1){
+    konum4 = 1;
+  }
+
+
+  if(i == 2){
+    konum4 = 2;
+  }
+}
+
+
+
+
+
+
+} // void loop 
